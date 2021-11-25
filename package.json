@@ -19,6 +19,7 @@
   "homepage": "https://github.com/Brock-Merritt/Chatly#readme",
   "dependencies": {
     "express": "^4.17.1",
+    "handlebars": "^4.7.7",
     "moment": "^2.29.1",
     "socket.io": "^4.4.0"
   },
