@@ -1,0 +1,28 @@
+{
+  "name": "chatly",
+  "version": "1.0.0",
+  "description": "Instant messaging app",
+  "main": "developtest.js",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-handlebars": "^6.0.1",
+    "mysql2": "^2.3.3",
+    "nodejs": "^0.0.0",
+    "sequelize": "^6.12.0-alpha.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Brock-Merritt/Chatly.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Brock-Merritt/Chatly/issues"
+  },
+  "homepage": "https://github.com/Brock-Merritt/Chatly#readme"
+}
