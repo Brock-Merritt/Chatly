@@ -4,4 +4,7 @@ router.get('/', (req, res) => {
   res.render('homepage');
 });
 
-module.exports = router;
+
+router.get('/dashboard', (req, res) => {
+  res.render('dashboard');
+});
