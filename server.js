@@ -3,13 +3,14 @@ const express = require('express');
 const exphbs = require('express-handlebars');
 const session = require('express-session');
 const sequelize = require('sequelize');
-const routes = require('./controllers/');
+const routes = require('./routes');
 
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
 //hello
 const app = express();
 const PORT = process.env.PORT || 3001;
+app.use(routes);
 
 
 const hbs = exphbs.create({});
