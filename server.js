@@ -7,22 +7,27 @@ const routes = require('./controllers/');
 // const { Server} = require('socket.io')
 const socket = require('socket.io');
 const Server = require('http');
-
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
 //hello
 
+console.log(`test`);
+
+
 const PORT = process.env.PORT || 3001;
 const hbs = exphbs.create({});
-const httpServer = createServer(app);
+// const httpServer = createServer(app);
 
 //app setup
 const app = express();
-var io = socket(app.listen(PORT, () => {
+var server = socket(app.listen(PORT, () => {
   console.log(`server running on port ${PORT}`);
 }))
 
-console.log(`test`);
+
+//socket setup
+var io = socket(server);
+
 
 io.on('connection', (socket) => {
   socket.emit("hello", "world");
@@ -39,6 +44,7 @@ io.on('connection', (socket) => {
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 
+//static files
 app.use(express.json());
 app.use(express.urlencoded({ extended: false}));
 app.use(express.static(path.join(__dirname,'public')));
