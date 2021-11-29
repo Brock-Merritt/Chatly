@@ -4,17 +4,23 @@ const exphbs = require('express-handlebars');
 const session = require('express-session');
 const sequelize = require('sequelize');
 const routes = require('./controllers/');
-const { Server} = require('socket.io')
-const { createServer } = require('http');
+// const { Server} = require('socket.io')
+const socket = require('socket.io');
+const Server = require('http');
 
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
 //hello
-const app = express();
+
 const PORT = process.env.PORT || 3001;
 const hbs = exphbs.create({});
 const httpServer = createServer(app);
-const io = new Server(httpServer, { /* options */});
+
+//app setup
+const app = express();
+var io = socket(app.listen(PORT, () => {
+  console.log(`server running on port ${PORT}`);
+}))
 
 console.log(`test`);
 
@@ -24,9 +30,9 @@ io.on('connection', (socket) => {
   console.log(`test io.on`);
 });
 
-httpServer.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-})
+// httpServer.listen(PORT, () => {
+//   console.log(`Server running on port ${PORT}`);
+// })
 
 
 
