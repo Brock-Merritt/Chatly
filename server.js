@@ -37,7 +37,7 @@ io.on('connection', (socket) => {
 });
 
 // httpServer.listen(PORT, () => {
-//   console.log(`Server running on port ${PORT}`);
+//    console.log(`Server running on port ${PORT}`);
 // })
 
 
@@ -61,4 +61,8 @@ app.use(express.static(path.join(__dirname,'public')));
 
 app.get('/', (req, res) => {
   res.render('homepage');
+});
+
+app.get('/dashboard', (req, res) => {
+  res.render('dashboard');
 });
