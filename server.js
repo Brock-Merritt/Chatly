@@ -28,11 +28,12 @@ var server = socket(app.listen(PORT, () => {
 //socket setup
 var io = socket(server);
 
-
+//connection from browser
 io.on('connection', (socket) => {
   socket.emit("hello", "world");
   console.log(socket.emit);
   console.log(`test io.on`);
+  console.log('socket test');
 });
 
 // httpServer.listen(PORT, () => {
