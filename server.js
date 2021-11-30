@@ -32,12 +32,12 @@ const io = socketio(server);
 
 //connection from browser
 io.on('connection', (socket) => {
- 
+ console.log('made socket connection',socket.id)
 //Current user connects
-  socket.emit('message', 'This works!');
+socket.emit('message', 'This works!');
 
 // When a new user connects
-  socket.broadcast.emit('message', 'User has join chat');
+socket.broadcast.emit('message', 'User has join chat');
 
 //A user disconnects
  // socket.on('disconnect', () => {
@@ -45,10 +45,10 @@ io.on('connection', (socket) => {
 //  });
 
   //catch chats
-  socket.on('chatMessage', (msg) => {
-    io.emit('chatMessage', msg);
-  })
-});
+socket.on('chatMessage', (msg) => {
+  io.emit('chatMessage', msg);
+})
+}); 
 
 // httpServer.listen(PORT, () => {
 //   console.log(`Server running on port ${PORT}`);
