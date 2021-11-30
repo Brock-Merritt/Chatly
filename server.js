@@ -6,9 +6,8 @@ const exphbs = require('express-handlebars');
 const session = require('express-session');
 const sequelize = require('sequelize');
 const routes = require('./controllers/');
-// const { Server} = require('socket.io')
-const socket = require('socket.io');
-const Server = require('http');
+
+
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
 //hello
@@ -22,24 +21,37 @@ const hbs = exphbs.create({});
 
 //app setup
 const app = express();
-var server = socket(app.listen(PORT, () => {
-  console.log(`server running on port ${PORT}`);
-}))
+const server = http.createServer(app);
+const socketio = require('socket.io');
+
+
 
 
 //socket setup
-var io = socket(server);
+const io = socketio(server);
 
 //connection from browser
 io.on('connection', (socket) => {
-  socket.emit("hello", "world");
-  console.log(socket.emit);
-  console.log(`test io.on`);
-  console.log('socket test');
+ 
+//Current user connects
+  socket.emit('message', 'This works!');
+
+// When a new user connects
+  socket.broadcast.emit('message', 'User has join chat');
+
+//A user disconnects
+ // socket.on('disconnect', () => {
+ //   io.omit('message', 'User has left the chat');
+//  });
+
+  //catch chats
+  socket.on('chatMessage', (msg) => {
+    io.emit('chatMessage', msg);
+  })
 });
 
 // httpServer.listen(PORT, () => {
-//    console.log(`Server running on port ${PORT}`);
+//   console.log(`Server running on port ${PORT}`);
 // })
 
 
