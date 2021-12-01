@@ -3,8 +3,8 @@ const express = require('express');
 const http = require('http');
 const exphbs = require('express-handlebars');
 const session = require('express-session');
-const sequelize = require('sequelize');
-const routes = require('./controllers/');
+// const sequelize = require('sequelize');
+// const routes = require('./controllers/');
 const formatMessage = require('./utils/messages');
 const {
   userJoin,
@@ -13,39 +13,43 @@ const {
   getRoomUsers
 } = require('./utils/users');
 
-
-const SequelizeStore = require('connect-session-sequelize')(session.Store);
-
-//hello
-
-console.log(`test`);
-
+const app = express();
 
 const PORT = process.env.PORT || 3001;
-const hbs = exphbs.create({});
-// const httpServer = createServer(app);
 
-//app setup
-const app = express();
-const server = http.createServer(app);
-const socketio = require('socket.io');
+const sequelize = require('./config/connection');
+const SequelizeStore = require('connect-session-sequelize')(session.Store);
+const sess = {
+  secret: 'super secret secret',
+  cookie: {},
+  resave: false,
+  saveUnitialized: true,
+  store: new SequelizeStore({
+    db: sequelize
+  }) 
+};
 
 
 
 
-//socket setup
-const io = socketio(server);
+app.use(session(sess));
+
+const hbs = exphbs.create({  });
 
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 
-//static files
 app.use(express.json());
 app.use(express.urlencoded({ extended: false}));
 app.use(express.static(path.join(__dirname,'public')));
-server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+app.use(require('./Controllers'));
 
-const chatBot= 'CHATly Chatter';
+
+const server = http.createServer(app);
+const socketio = require('socket.io');
+
+//socket setup
+const io = socketio(server);
 
 //connection from browser
 io.on('connection', socket => {
@@ -55,7 +59,7 @@ io.on('connection', socket => {
     socket.join(user.room);
  
 //Current user connects
-  socket.emit('message',formatMessage(chatBot, 'This is CHATly!'));
+  socket.emit('message',formatMessage('This is CHATly!'));
 
 // When a new user connects
 socket.broadcast
@@ -94,7 +98,30 @@ io.to(user.room).emit('roomUsers', {
         });
       }
     });
+});
+
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+  sequelize.sync({
+    force: false
   });
+});
+
+
+
+
+//hello
+
+console.log(`test`);
+
+
+
+
+// const httpServer = createServer(app);
+
+//app setup
+
+
 
 // httpServer.listen(PORT, () => {
 //   console.log(`Server running on port ${PORT}`);
@@ -103,6 +130,10 @@ io.to(user.room).emit('roomUsers', {
 
 
 
+//static files
+
+// // app.use(express.static('views'));
+// server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 
 // sequelize.sync({ force: false}).then(() => {
 //     app.listen(PORT, () => console.log('now listening'));
@@ -111,11 +142,3 @@ io.to(user.room).emit('roomUsers', {
 // app.listen(PORT, () => {
 //   console.log(`Server running on port ${PORT}`);
 // });
-
-app.get('/', (req, res) => {
-  res.render('homepage');
-});
-
-app.get('/dashboard', (req, res) => {
-  res.render('dashboard');
-});
