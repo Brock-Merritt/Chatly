@@ -1,5 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300&family=Zen+Antique+Soft&display=swap');
 
+:root{
+    --dark-color-a: #639fab;
+	--dark-color-b: #fa824c;
+}
+
 
 body {
     font-family:  'Raleway', sans-serif;
@@ -10,7 +15,7 @@ body {
 
 /* nav bar style */
 .topnav {
-    background-color: #fa824c;
+    background-color: var(--dark-color-b);
     overflow: hidden;
   }
   
@@ -39,34 +44,12 @@ body {
 .join-container{
     width: 500px;
     height: 600px;
-    background: #FA824C;
-}
-
-.nav-pills {
-    display: flex;
-    justify-content: center;
-    padding-left: 5px;
-    font-size: 20px;
-    list-style: none;
-}
-
-.nav-pills a {
-    text-decoration: none;
-    color: white;
-    padding: 10px 30px;
-    background-color: transparent;
-}
-
-.nav-pills a:hover{
-    border-radius: 10px;
-    background-color: #79bcc9;
-    width: 100%;
-    font-weight: bolder;
+    background: var(--dark-color-b);
 }
 
 
 .user-heading {
-    background: #639FAB;
+    background: var(--dark-color-a);
     border-radius: 4px 4px 0 0;
     -webkit-border-radius: 4px 4px 0 0;
     padding: 30px;
@@ -103,7 +86,7 @@ body {
     padding: 10px !important;
     font-size: 21px;
     font-weight: bold;
-    border-top: 2px solid #FA824C;
+    border-top: 2px solid var(--dark-color-b);
 }
 
 
