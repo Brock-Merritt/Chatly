@@ -48,7 +48,7 @@ socket.broadcast.emit('message', 'User has join chat');
 socket.on('chatMessage', (msg) => {
   io.emit('chatMessage', msg);
 })
-}); 
+});
 
 // httpServer.listen(PORT, () => {
 //   console.log(`Server running on port ${PORT}`);
