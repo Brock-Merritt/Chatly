@@ -45,7 +45,8 @@
 body {
     font-family:  'Raleway', sans-serif;
 	font-size: 16px;
-	margin: 20px;
+	margin: 20px !important;
+    background: white;
 }
 
 ul {
@@ -210,11 +211,16 @@ a {
 	.chat-main {
 		display: block;
 	}
+	.chat-sidebar {
+		display: none;
+	}
 
-	.wrapper {
+	.container  {
 		width: 450px;
 		background: #FA824C;
 	}
+
+	
 	
 	.nav-pills {
 		display: flex;
@@ -286,8 +292,5 @@ a {
 		margin-bottom: 10px;
 		padding:0 15px;
 		font-size: 15px;
-	}
-	.chat-sidebar {
-		display: none;
 	}
 }
