@@ -116,3 +116,9 @@ app.get('/', (req, res) => {
 app.get('/dashboard', (req, res) => {
   res.render('dashboard');
 });
+
+app.get('/chat', (req, res) => {
+  res.render('chat');
+});
+
+
