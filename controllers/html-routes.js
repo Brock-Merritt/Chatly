@@ -14,7 +14,9 @@ router.get('/chat', (req, res) => {
     res.render('chat');
 });
   
-router.get('')
+router.get('/submit-form', (req, res) => {
+    res.render('submit-form')
+})
   
   
 

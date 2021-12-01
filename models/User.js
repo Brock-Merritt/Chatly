@@ -38,6 +38,25 @@ User.init(
         validate: {
           len: [4]
         }
+      },
+      birthday : {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        validate: {
+          len: [8]
+        }
+      },
+      favcolor: {
+        type: DataTypes.STRING,
+        allowNull: true
+      },
+      favanimal: {
+        type: DataTypes.STRING,
+        allowNull: true
+      },
+      favfood: {
+        type: DataTypes.STRING,
+        allowNull: true
       }
     },
     {
