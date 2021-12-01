@@ -1,4 +1,3 @@
-
 const path = require('path');
 const express = require('express');
 const http = require('http');
@@ -37,6 +36,17 @@ const socketio = require('socket.io');
 //socket setup
 const io = socketio(server);
 
+app.engine('handlebars', hbs.engine);
+app.set('view engine', 'handlebars');
+
+//static files
+app.use(express.json());
+app.use(express.urlencoded({ extended: false}));
+app.use(express.static(path.join(__dirname,'public')));
+server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+
+const chatBot= 'CHATly Chatter';
+
 //connection from browser
 io.on('connection', socket => {
   socket.on('joinRoom', ({ username, room }) => {
@@ -45,7 +55,7 @@ io.on('connection', socket => {
     socket.join(user.room);
  
 //Current user connects
-  socket.emit('message',formatMessage('This is CHATly!'));
+  socket.emit('message',formatMessage(chatBot, 'This is CHATly!'));
 
 // When a new user connects
 socket.broadcast
@@ -92,14 +102,7 @@ io.to(user.room).emit('roomUsers', {
 
 
 
-app.engine('handlebars', hbs.engine);
-app.set('view engine', 'handlebars');
 
-//static files
-app.use(express.json());
-app.use(express.urlencoded({ extended: false}));
-app.use(express.static(path.join(__dirname,'public')));
-server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 
 // sequelize.sync({ force: false}).then(() => {
 //     app.listen(PORT, () => console.log('now listening'));
@@ -116,9 +119,3 @@ app.get('/', (req, res) => {
 app.get('/dashboard', (req, res) => {
   res.render('dashboard');
 });
-
-app.get('/chat', (req, res) => {
-  res.render('chat');
-});
-
-
