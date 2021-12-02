@@ -30,7 +30,7 @@ chatMessage.scrollTop = chatMessage.scrollHeight;
 chatForm.addEventListener('submit', (e) => {
     e.preventDefault();
 
-    const msg = e.target.elements.msg.value;
+    let msg = e.target.elements.msg.value;
     msg = msg.trim();
 
     if (!msg) {
@@ -77,7 +77,7 @@ function outputRoomName(room) {
   document.getElementById('leave-btn').addEventListener('click', () => {
     const leaveRoom = confirm('Are you sure you want to leave the chatroom?');
     if (leaveRoom) {
-      window.location = 'homepage';
+      window.location = '../index.html';
     } else {
     }
   });

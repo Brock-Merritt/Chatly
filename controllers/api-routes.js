@@ -8,8 +8,8 @@ router.post('/submit-form', (req, res) => {
     console.log(req.body);
     
     
-    res.render('/views/chat')
-})
+    res.render('submit-form')
+});
 
 router.post('/submit-form', (req, res) => {
     // expects {username: 'Lernantino', email: 'lernantino@gmail.com', password: 'password1234'}

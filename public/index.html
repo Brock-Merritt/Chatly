@@ -8,6 +8,7 @@
 
     </head>
 <body>
+    <!-- navigation -->
       <!-- navigation -->
       <div class="topnav">
   <a class="active" href="#home">CHATly</a>
@@ -15,12 +16,12 @@
   <a href="#logout">Logout</a>
   <a href="\dashboard">About</a>
 </div>
-   <div class="join-container">
+    <div class="join-container">
 			<header class="join-header">
 				<h1> CHATly</h1>
 			</header>
 			<main class="join-main">
-				<form action="/submit-form">
+				<form action="/api/submit-form" method="POST">
                     <div class="nameInput">
                         <div class="field">
                             <label>First Name</label>
@@ -52,7 +53,7 @@
                         <input type="text" placeholder="Enter a new password"
                         required />
                     </div>
-                    <div class="form-control">
+                    <div class="field">
 						<label for="room">Choose a Room</label>
 						<select name="room" id="room">
 							<option value="Azeroth">Azeroth</option>

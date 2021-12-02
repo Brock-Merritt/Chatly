@@ -42,7 +42,7 @@ app.set('view engine', 'handlebars');
 app.use(express.json());
 app.use(express.urlencoded({ extended: false}));
 app.use(express.static(path.join(__dirname,'public')));
-app.use(require('./Controllers'));
+app.use(require('./controllers/'));
 
 
 const server = http.createServer(app);
@@ -59,7 +59,7 @@ io.on('connection', socket => {
     socket.join(user.room);
  
 //Current user connects
-  socket.emit('message',formatMessage('This is CHATly!'));
+  socket.emit('message',formatMessage('Welcome to CHATly!'));
 
 // When a new user connects
 socket.broadcast
@@ -98,30 +98,7 @@ io.to(user.room).emit('roomUsers', {
         });
       }
     });
-});
-
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-  sequelize.sync({
-    force: false
   });
-});
-
-
-
-
-//hello
-
-console.log(`test`);
-
-
-
-
-// const httpServer = createServer(app);
-
-//app setup
-
-
 
 // httpServer.listen(PORT, () => {
 //   console.log(`Server running on port ${PORT}`);
@@ -129,16 +106,34 @@ console.log(`test`);
 
 
 
+app.engine('handlebars', hbs.engine);
+app.set('view engine', 'handlebars');
 
 //static files
+app.use(express.json());
+app.use(express.urlencoded({ extended: false}));
+app.use(express.static(path.join(__dirname,'public')));
+server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 
-// // app.use(express.static('views'));
-// server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+// server.listen(PORT, () => {
+//   console.log(`Server running on port ${PORT}`);
+//   sequelize.sync({
+//     force: false
+//   });
+// })
 
 // sequelize.sync({ force: false}).then(() => {
 //     app.listen(PORT, () => console.log('now listening'));
 // });
 
-// app.listen(PORT, () => {
+//  app.listen(PORT, () => {
 //   console.log(`Server running on port ${PORT}`);
+//   });
+
+// app.get('/', (req, res) => {
+//   res.render('homepage');
+// });
+
+// app.get('/dashboard', (req, res) => {
+//   res.render('dashboard');
 // });
