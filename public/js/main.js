@@ -3,6 +3,7 @@ const userList = document.getElementById('users');
 const chatForm = document.getElementById('chat-form');
 const chatMessage = document.querySelector('.chat-messages');
 
+
 const socket = io();
 
 const { username, room } = Qs.parse(location.search, {
@@ -30,7 +31,7 @@ chatMessage.scrollTop = chatMessage.scrollHeight;
 chatForm.addEventListener('submit', (e) => {
     e.preventDefault();
 
-    const msg = e.target.elements.msg.value;
+    let msg = e.target.elements.msg.value;
     msg = msg.trim();
 
     if (!msg) {

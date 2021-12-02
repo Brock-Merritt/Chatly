@@ -6,7 +6,6 @@ router.get('/', (req, res) => {
 });
   
 router.get('/dashboard', (req, res) => {
-    console.log(`dashboard`);
     res.render('dashboard');
 });
   

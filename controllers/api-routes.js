@@ -9,8 +9,8 @@ router.post('/submit-form', (req, res) => {
     console.log(req.body);
     
     
-    res.render('dashboard')
-})
+    res.render('submit-form')
+});
 
 router.post('/submit-form', (req, res) => {
     // expects {username: 'Lernantino', email: 'lernantino@gmail.com', password: 'password1234'}
