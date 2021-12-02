@@ -3,12 +3,13 @@ const views = require('../server');
 const users = require('../models/User');
 
 
+
 router.post('/submit-form', (req, res) => {
     const username = req.body.username
     console.log(req.body);
     
     
-    res.render('/views/chat')
+    res.render('dashboard')
 })
 
 router.post('/submit-form', (req, res) => {

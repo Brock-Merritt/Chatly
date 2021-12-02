@@ -100,12 +100,20 @@ io.to(user.room).emit('roomUsers', {
     });
 });
 
-app.listen(PORT, () => {
+httpServer.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
   sequelize.sync({
     force: false
   });
-});
+})
+
+
+// app.listen(PORT, () => {
+//   console.log(`Server running on port ${PORT}`);
+  // sequelize.sync({
+  //   force: false
+  // });
+// });
 
 
 
