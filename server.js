@@ -45,6 +45,7 @@ app.use(express.static(path.join(__dirname,'public')));
 app.use(require('./controllers/'));
 
 
+
 const server = http.createServer(app);
 const socketio = require('socket.io');
 
@@ -99,6 +100,7 @@ io.to(user.room).emit('roomUsers', {
       }
     });
   });
+  server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 
 // httpServer.listen(PORT, () => {
 //   console.log(`Server running on port ${PORT}`);
@@ -113,7 +115,7 @@ io.to(user.room).emit('roomUsers', {
 // app.use(express.json());
 // app.use(express.urlencoded({ extended: false}));
 // app.use(express.static(path.join(__dirname,'public')));
-server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+// server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 
 // server.listen(PORT, () => {
 //   console.log(`Server running on port ${PORT}`);
