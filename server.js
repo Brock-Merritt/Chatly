@@ -106,13 +106,13 @@ io.to(user.room).emit('roomUsers', {
 
 
 
-app.engine('handlebars', hbs.engine);
-app.set('view engine', 'handlebars');
+// app.engine('handlebars', hbs.engine);
+// app.set('view engine', 'handlebars');
 
-//static files
-app.use(express.json());
-app.use(express.urlencoded({ extended: false}));
-app.use(express.static(path.join(__dirname,'public')));
+// //static files
+// app.use(express.json());
+// app.use(express.urlencoded({ extended: false}));
+// app.use(express.static(path.join(__dirname,'public')));
 server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 
 // server.listen(PORT, () => {
