@@ -2,15 +2,15 @@ const roomName = document.getElementById('room-name');
 const userList = document.getElementById('users');
 const chatForm = document.getElementById('chat-form');
 const chatMessage = document.querySelector('.chat-messages');
-
+const { username, room } = Qs.parse(location.search, {
+  ignoreQueryPrefix: true,
+});
 const socket = io();
 
-const { username, room } = Qs.parse(location.search, {
-    ignoreQueryPrefix: true,
-  });
 
 
-// Join chatroom
+
+// Enter Chatroom
 socket.emit('joinRoom', { username, room });
 
 // Get room and users
@@ -58,19 +58,20 @@ function outputMessage(message) {
     document.querySelector('.chat-messages').appendChild(div);
   }
 
-  // Add room name to DOM
+  // Add room name sidebar
 function outputRoomName(room) {
     roomName.innerText = room;
   }
   
-  // Add users to DOM
+  // Add users to sidebar
   function outputUsers(users) {
-    userList.innerHTML = '';
-    users.forEach((user) => {
-      const li = document.createElement('li');
-      li.innerText = user.username;
-      userList.appendChild(li);
-    });
+    userList.innerHTML = `
+      ${users.map(user => `<li>${user.username}</li>`).join('')}`;
+    // users.forEach((user) => {
+    //   const li = document.createElement('li');
+    //   li.innerText = user.username;
+    //   userList.appendChild(li);
+    // });
   }
   
   //Prompt the user before leave chat room

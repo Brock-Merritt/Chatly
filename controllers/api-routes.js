@@ -1,17 +1,17 @@
 const router = require('express').Router();
 const views = require('../server');
-const users = require('../models/User');
+const users = require('../models/user');
 
 
-router.post('/submit-form', (req, res) => {
+router.post('/chat', (req, res) => {
     const username = req.body.username
     console.log(req.body);
     
     
-    res.render('submit-form')
+    res.render('chat')
 });
 
-router.post('/submit-form', (req, res) => {
+router.post('/chat', (req, res) => {
     // expects {username: 'Lernantino', email: 'lernantino@gmail.com', password: 'password1234'}
     User.create({
       username: req.body.username,
