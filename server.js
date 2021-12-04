@@ -46,11 +46,7 @@ app.use(require('./controllers/'));
 
 
 
-//const server = http.createServer(app);
 
-
-//socket setup
-//const io = socketio(server);
 
 //connection from browser
 io.on('connection', socket => {
@@ -90,40 +86,3 @@ if (user) {
 server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 
 
-// httpServer.listen(PORT, () => {
-//   console.log(`Server running on port ${PORT}`);
-// })
-
-
-
-// app.engine('handlebars', hbs.engine);
-// app.set('view engine', 'handlebars');
-
-// //static files
-// app.use(express.json());
-// app.use(express.urlencoded({ extended: false}));
-// app.use(express.static(path.join(__dirname,'public')));
-// server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
-
-// server.listen(PORT, () => {
-//   console.log(`Server running on port ${PORT}`);
-//   sequelize.sync({
-//     force: false
-//   });
-// })
-
-// sequelize.sync({ force: false}).then(() => {
-//     app.listen(PORT, () => console.log('now listening'));
-// });
-
-//  app.listen(PORT, () => {
-//   console.log(`Server running on port ${PORT}`);
-//   });
-
-// app.get('/', (req, res) => {
-//   res.render('homepage');
-// });
-
-// app.get('/dashboard', (req, res) => {
-//   res.render('dashboard');
-// });
