@@ -10,7 +10,8 @@ router.get('/dashboard', (req, res) => {
 });
   
 router.get('/chat', (req, res) => {
-    res.render('chat');
+   
+  res.render('chat');
 });
   
 router.get('/submit-form', (req, res) => {

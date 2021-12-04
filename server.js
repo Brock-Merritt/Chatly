@@ -1,20 +1,18 @@
 const path = require('path');
 const express = require('express');
 const http = require('http');
+const socketio = require('socket.io');
 const exphbs = require('express-handlebars');
 const session = require('express-session');
 // const sequelize = require('sequelize');
 // const routes = require('./controllers/');
 const formatMessage = require('./utils/messages');
-const {
-  userJoin,
-  getCurrentUser,
-  userLeave,
-  getRoomUsers
-} = require('./utils/users');
+const {userJoin, getCurrentUser,userLeave, 
+      getRoomUsers} = require('./utils/users');
 
 const app = express();
-
+const server = http.createServer(app);
+const io = socketio(server);
 const chatLy = 'CHATly';
 
 const PORT = process.env.PORT || 3001;
@@ -48,60 +46,49 @@ app.use(require('./controllers/'));
 
 
 
-const server = http.createServer(app);
-const socketio = require('socket.io');
+//const server = http.createServer(app);
+
 
 //socket setup
-const io = socketio(server);
+//const io = socketio(server);
 
 //connection from browser
 io.on('connection', socket => {
-  socket.on('joinRoom', ({ username, room }) => {
-    const user = userJoin(socket.id, username, room);
-
-    socket.join(user.room);
- 
-//Current user connects
-  socket.emit('message',formatMessage(chatLy, 'Welcome to CHATly!'));
-
+  socket.on('joinRoom', ({username, room}) => {
+      const user = userJoin(socket.id, username, room);
+      socket.join(user.room);
+// //Current user connects
+socket.emit('message', formatMessage(chatLy, 'Welcome to Chatly'));
 // When a new user connects
-socket.broadcast
-.to(user.room)
-.emit(
-  'message',
-  formatMessage(chatLy,`${user.username} has joined the chat`)
-);
+socket.broadcast.to(user.room).emit( 'message', formatMessage(chatLy, `${user.username} has joined the chat`));
+
 io.to(user.room).emit('roomUsers', {
-  room: user.room,
-  users: getRoomUsers(user.room)
+  room: user.room, users: getRoomUsers(user.room)
 });
 });
 
-  //catch chats
-  socket.on('chatMessage', msg => {
-    const user = getCurrentUser(socket.id);
 
-    io.to(user.room).emit('message', formatMessage(user.username, msg));
+// Get chat messages
+socket.on('chatMessage',msg => {
+  const user = getCurrentUser(socket.id);
+  io.to(user.room).emit('message', formatMessage(user.username, msg));
+});
+// Runs when client disconnects
+socket.on('disconnect', () => {
+  const user = userLeave(socket.id);
+
+if (user) {
+  io.to(user.room).emit('message', formatMessage(chatLy, `${user.username} has left the chat`));
+  };
+  io.to(user.room).emit('roomUsers', {
+      room: user.room, users: getRoomUsers(user.room)
   });
-    // Runs when client disconnects
-    socket.on('disconnect', () => {
-      const user = userLeave(socket.id);
   
-      if (user) {
-        io.to(user.room).emit(
-          'message',
-          formatMessage(chatLy, `${user.username} has left the chat`)
-        );
-   // Send users and room info
-   io.to(user.room).emit('roomUsers', {
-    room: user.room,
-    users: getRoomUsers(user.room)
-  });
-       
-      }
-    });
-  });
-  server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+});
+});
+
+server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+
 
 // httpServer.listen(PORT, () => {
 //   console.log(`Server running on port ${PORT}`);

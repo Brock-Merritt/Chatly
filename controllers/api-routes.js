@@ -4,25 +4,25 @@ const users = require('../models/user');
 
 
 router.post('/chat', (req, res) => {
-    const username = req.body.username
+   
     console.log(req.body);
     
     
     res.render('chat')
 });
 
-router.post('/chat', (req, res) => {
-    // expects {username: 'Lernantino', email: 'lernantino@gmail.com', password: 'password1234'}
-    User.create({
-      username: req.body.username,
-      email: req.body.email,
-      password: req.body.password
-    })
-      .then(dbUserData => res.json(dbUserData))
-      .catch(err => {
-        console.log(err);
-        res.status(500).json(err);
-      });
-});
+// router.post('/chat', (req, res) => {
+//     // expects {username: 'Lernantino', email: 'lernantino@gmail.com', password: 'password1234'}
+//     User.create({
+//       username: req.body.username,
+//       email: req.body.email,
+//       password: req.body.password
+//     })
+//       .then(dbUserData => res.json(dbUserData))
+//       .catch(err => {
+//         console.log(err);
+//         res.status(500).json(err);
+//       });
+// });
 
 module.exports = router;

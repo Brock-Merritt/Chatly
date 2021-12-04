@@ -1,84 +1,95 @@
+const chatForm = document.getElementById('chat-form');
+const chatMessages = document.querySelector('.chat-messages');
 const roomName = document.getElementById('room-name');
 const userList = document.getElementById('users');
-const chatForm = document.getElementById('chat-form');
-const chatMessage = document.querySelector('.chat-messages');
-const { username, room } = Qs.parse(location.search, {
-  ignoreQueryPrefix: true,
+
+// Get username and room from URL
+ const { username, room } = Qs.parse(location.search, {
+ ignoreQueryPrefix: true,
 });
+
 const socket = io();
 
-
-
-
-// Enter Chatroom
+// // Join chatroom
 socket.emit('joinRoom', { username, room });
 
 // Get room and users
 socket.on('roomUsers', ({ room, users }) => {
-  outputRoomName(room);
-  outputUsers(users);
+outputRoomName(room);
+outputUsers(users);
 });
 
-
+// // Message from server
 socket.on('message', message => {
-    console.log(message);
-    outputMessage(message);
+ console.log(message);
+ outputMessage(message);
 
-chatMessage.scrollTop = chatMessage.scrollHeight;
+//scroll functionality
+chatMessages.scrollTop = chatMessages.scrollHeight;
 });
 
+// Message submit
 chatForm.addEventListener('submit', (e) => {
-    e.preventDefault();
+e.preventDefault();
 
-    let msg = e.target.elements.msg.value;
-    msg = msg.trim();
+//   // Get message text
+ let msg = e.target.elements.msg.value;
+ 
 
-    if (!msg) {
-      return false;
-    }
+//   msg = msg.trim();
 
-    socket.emit('chatMessage', msg);
-    e.target.elements.msg.value = '';
-    e.target.elements.msg.focus();
+//   if (!msg) {
+//     return false;
+//   }
 
-});
+ // Emit message to server
+ socket.emit('chatMessage', msg);
 
-function outputMessage(message) {
+// clear message bar
+e.target.elements.msg.value = '';
+e.target.elements.msg.focus();
+ });
+
+ function outputMessage(message) {
     const div = document.createElement('div');
     div.classList.add('message');
-    const p = document.createElement('p');
-    p.classList.add('meta');
-    p.innerText = message.username;
-    p.innerHTML += `<span>${message.time}</span>`;
-    div.appendChild(p);
-    const para = document.createElement('p');
-    para.classList.add('text');
-    para.innerText = message.text;
-    div.appendChild(para);
+    // const p = document.createElement('p');
+    // p.classList.add('meta');
+    // p.innerText = message.username;
+    div.innerHTML += `<p class="meta">${message.username}<span>${message.time}</span></p>
+    <p class="test">
+        ${message.text}
+        </p>`;
+    // div.appendChild(p);
+    // const para = document.createElement('p');
+    // para.classList.add('text');
+    // para.innerText = message.text;
+    // div.appendChild(para);
     document.querySelector('.chat-messages').appendChild(div);
   }
 
-  // Add room name sidebar
+// Add room name to DOM
 function outputRoomName(room) {
-    roomName.innerText = room;
+roomName.innerText = room;
+}
+
+// Add users to DOM
+function outputUsers(users) {
+userList.innerHTML = `
+${users.map(user => `<li>${user.username}</li>`).join('')}`;
+};
+//   users.forEach((user) => {
+//     const li = document.createElement('li');
+//     li.innerText = user.username;
+//     userList.appendChild(li);
+//   });
+// }
+
+//Prompt the user before leave chat room
+document.getElementById('leave-btn').addEventListener('click', () => {
+  const leaveRoom = confirm('Are you sure you want to leave the chatroom?');
+  if (leaveRoom) {
+  window.location = '../index.html';
+  } else {
   }
-  
-  // Add users to sidebar
-  function outputUsers(users) {
-    userList.innerHTML = `
-      ${users.map(user => `<li>${user.username}</li>`).join('')}`;
-    // users.forEach((user) => {
-    //   const li = document.createElement('li');
-    //   li.innerText = user.username;
-    //   userList.appendChild(li);
-    // });
-  }
-  
-  //Prompt the user before leave chat room
-  document.getElementById('leave-btn').addEventListener('click', () => {
-    const leaveRoom = confirm('Are you sure you want to leave the chatroom?');
-    if (leaveRoom) {
-      window.location = '../index.html';
-    } else {
-    }
-  });
+ });
