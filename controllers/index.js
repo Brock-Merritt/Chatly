@@ -1,18 +1,18 @@
 const router = require('express').Router();
-const htmlRoutes = require('./html-routes');
-const apiRoutes = require('./api-routes');
+const homeRoutes = require('./home-routes');
+// const apiRoutes = require('../doweneedit/api-routes');
 
 
-const userRoutes = require('./user-routes');
+const userRoutes = require('./api/user-routes');
 
 router.use('/users', userRoutes);
 
 
 
 
-router.use('/', htmlRoutes);
-router.use('/', apiRoutes);
-// router.use('/')
+router.use('/', homeRoutes);
+// router.use('/', apiRoutes);
+// // router.use('/')
 
 router.use((req, res) => {
   res.status(404).end();

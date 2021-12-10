@@ -34,7 +34,7 @@ const sess = {
 
 app.use(session(sess));
 
-const hbs = exphbs.create({  });
+const hbs = exphbs.create({ });
 
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
@@ -83,6 +83,12 @@ if (user) {
 });
 });
 
-server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
-
-
+// server.listen(PORT, () => {
+//   console.log(`Server running on port ${PORT}`);
+//   sequelize.sync({
+//     force: false
+//   });
+// })
+sequelize.sync({ force: false }).then(() => {
+  app.listen(PORT, () => console.log('Now listening'));
+});
