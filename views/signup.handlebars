@@ -1,29 +1,23 @@
-<form class="signup-form>"
-  <div class="join-container">
-        <header class="join-header">
-            {{!-- <h1> CHATly</h1> --}}
-        </header></div>
-        
-        <main class="join-main">
-            {{!-- <form action="index.html"> --}}
-                <div class="field">
-                    <label for ="username-signup">Username</label>
-                    <input type="text" id="username-signup" placeholder="What should we call you?"
-                    required />
-                </div>
-                <div class="field">
-                    <label for="email-signup">Email:</label>
-                   <input type="text" id="email-signup"  placeholder="Enter your email address"
-                    required />
-                </div>
-                <div class="field">
-                    <label for="password-signup">Password:</label>
-                    <input type="password" id="password-signup" placeholder="Enter a new password"
-                    required />
-                </div>
-                <div>
-    <button type="submit" class="btn">Signup!</button>
+<div class="column">
+<h2 class="title pb-4">create new account:</h2><hr>
+<form class="signup-form">
+  <div>
+    <label for="username-signup">username:</label>
+    <input type="text" id="username-signup" />
   </div>
-                
+  <div>
+    <label for="email-signup">email:</label>
+    <input type="text" id="email-signup" />
+  </div>
+  <div>
+    <label for="password-signup">password:</label>
+    <input type="password" id="password-signup" />
+  </div>
+  <div>
+    <button type="submit" class="button is-primary">signup</button>
+  </div>
 </form>
-<script src="../public/js/signup.js"></script>
+</div>
+
+<!-- javascript file-->
+<script src="/javascript/signup.js"></script>

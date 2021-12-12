@@ -11,7 +11,7 @@ async function loginFormHandler(event) {
         email,
         password
       }),
-      // headers: { 'Content-Type': 'application/json' }
+      headers: { 'Content-Type': 'application/json' }
     });
 
     if (response.ok) {
@@ -37,7 +37,7 @@ async function loginFormHandler(event) {
 //         email,
 //         password
 //       }),
-//       // headers: { 'Content-Type': 'application/json' }
+//       headers: { 'Content-Type': 'application/json' }
 //     });
 
 //     if (response.ok) {
