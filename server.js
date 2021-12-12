@@ -83,12 +83,19 @@ if (user) {
 });
 });
 
-// server.listen(PORT, () => {
-//   console.log(`Server running on port ${PORT}`);
-//   sequelize.sync({
-//     force: false
-//   });
+server.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+  sequelize.sync({
+    force: false
+  });
+})
+// sequelize.sync({ force: false }).then(() => {
+//   app.listen(PORT, () => console.log('Now listening'));
+// });
+// db.sequelize.sync({force: true}).then(function () {
+//   app.listen(PORT, function () {
+//     console.log("APP LISTENING ON PORT " + PORT);
+    
+
+//    });
 // })
-sequelize.sync({ force: false }).then(() => {
-  app.listen(PORT, () => console.log('Now listening'));
-});
