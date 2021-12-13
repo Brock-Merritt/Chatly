@@ -9,9 +9,6 @@ router.get('/', (req, res) => {
     res.render('homepage');
 });
   
-// router.get('/homepage', (req, res) => {
-//     res.render('homepage');
-// });
   
 router.get('/chat', (req, res) => {
    
@@ -28,19 +25,12 @@ router.get('/signup', (req, res) => {
 
 router.get('/login', (req, res) => {
   if (req.session.loggedIn) {
-    res.redirect('/');
+    res.redirect('/login');
     return;
   }
 
   res.render('login');
 });
-
-// router.get('/logout', (req, res) => {
-//   res.render('/')
-// });
-
-  
-  
 
 
 module.exports = router;

@@ -1,30 +1,11 @@
-    {{!-- homepage.handlebars --}}
-
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie-edge">
-        <title>CHATly</title>
-        <link rel="stylesheet" href="css/style.css">
-
-    </head>
-<body>
-      <!-- navigation -->
-      <div class="topnav">
-  <a class="active" href="#home">CHATly</a>
-  {{!-- <a href="./waitroom.html">Login</a>
-  <a href="#logout">Logout</a>
-  <a href="\dashboard">About</a> --}}
-</div>
-   <div class="join-container">
+ <div class="join-container">
 			<header class="join-header">
 				<h1> CHATly</h1>
 			</header>
 			<main class="join-main">
                     <div class="nameInput">
                         <div class="field">
-                            <label>First Name</label>
+                            {{!-- <label>First Name</label>
                             <input type="text" placeholder="First Name" name="firstname"
                             required />
                         </div>
@@ -32,7 +13,7 @@
                             <label>Last Name</label>
                             <input type="text" placeholder="Last Name"
                             required />
-                        </div>
+                        </div> --}}
 					<div class="field">
                         <label>Email Address</label>
                         <input type="text" placeholder="Enter your email address"
@@ -40,15 +21,21 @@
                     </div>
                     <form action="chat.html" method="get">
                     <div class="form-control">
-						<label for="username">Username</label>
+						<label for="username-signup">Username</label>
 						<input
 							type="text"
 							name="username"
-							id="username"
+							id="username-signup"
 							placeholder="Enter username..."
 							required
 						/>
-
+                        </div>
+                     <div class="field">
+                          <label for="password-login">password:</label>
+                          <input type="password" id="password-login" 
+                        required />
+                    </div>
+            
                     <div class="form-control">
 						<label for="room-name">Choose a Room</label>
 						<select name="room-name" id="room-name">
@@ -62,5 +49,5 @@
             </form>
         </section>
     </div>
-</body>
-</html>
+
+{{!-- <script type="text/javascript" src="/javascript/signup.js"></script> --}}

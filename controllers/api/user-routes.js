@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const { User } = require('../../models');
-// const withAuth = require('../../utils/auth')
+
 
 // get all users
 router.get('/', (req, res) => {
@@ -139,8 +139,5 @@ router.delete('/:id', (req, res) => {
       res.status(500).json(err);
     });
 });  
-
-
- 
 
 module.exports = router;
