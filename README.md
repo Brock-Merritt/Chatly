@@ -14,25 +14,12 @@ A messaging app that enables users to instant message and connect with each othe
 
 ## Table of Contents
 - [Description](#Description)
-- [Installation](#Installation)
-- [Usage](#Usage)
-- [Screenshot](#Screenshot)
 - [License](#License)
 - [Credits](#Credits)
 - [Contribution](#Contributes)
 - [Contact Me](#Contact)
 
-## Installation:
-1. In Progress
 
-## Usage
-In Progress
-
-## Screenshot
-![screenshot]
-
-## Demo Video
-Coming Soon!
 
 ## Contributes
 Contribute here! Feel free to fork and make pull requests to your hearts content.
@@ -45,5 +32,4 @@ No license needed.
 Jesus H. Christ! No seriously, this is hard. We're working on it! Be ready soon! 
 
 ## Contact
-Find us on GitHub: [detrasmental](https://github.com/detrasmental) [InBrockWeTrust](https://github.com/Brock-Merritt) [caseylister](https://github.com/caseylister) [M1guelp](https://github.com/M1guelp)
-
+Find us on GitHub: [detrasmental](https://github.com/detrasmental) [InBrockWeTrust](https://github.com/Brock-Merritt) [caseylister](https://github.com/caseylister)
