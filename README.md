@@ -31,7 +31,7 @@ Contribute here! Feel free to fork and make pull requests to your hearts content
 No license needed. 
 
 ## Credits
-Jesus H. Christ! No seriously, this is hard. We're working on it! Be ready soon! 
+
 
 ## Contact
 Find us on GitHub: [detrasmental](https://github.com/detrasmental) [InBrockWeTrust](https://github.com/Brock-Merritt) [caseylister](https://github.com/caseylister) 
